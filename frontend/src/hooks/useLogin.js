@@ -11,7 +11,7 @@ export const useLogin = () => {
     setIsLoading(true)
     setError(null)
 
-    const response = await fetch('http://localhost:4000/api/user/login', {
+    const response = await fetch(process.env.SERVER+'/api/user/login', {
       method: 'POST',
       headers: {'Content-Type': 'application/json'},
       body: JSON.stringify({ email, password })
@@ -25,7 +25,7 @@ export const useLogin = () => {
     if (response.ok) {
       // save the user to local storage
       localStorage.setItem('user', JSON.stringify(json))
-      const socket = await socketIO.connect('http://localhost:4000');
+      const socket = await socketIO.connect(process.env.SERVER);
       const userName = json.userName
       await socket.on('connect', () => {
         socket.emit('newUser', { userName, socketID: socket.id });
