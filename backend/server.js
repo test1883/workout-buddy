@@ -40,7 +40,7 @@ mongoose.connect(process.env.MONGO_URI)
     
     const io = socket(server, {
       cors: {
-        origin: "https://workout-buddy-guik.onrender.com",
+        origin: "https://workout-buddy-client-6rex.onrender.com/",
         credentials: true,
       },
     });
