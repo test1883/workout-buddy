@@ -23,7 +23,7 @@ export const AuthContextProvider = ({ children }) => {
   useEffect(() => {
     const user = JSON.parse(localStorage.getItem("user"))
     if (user) {
-      const socket = socketIO.connect(process.env.SERVER);
+      const socket = socketIO.connect(`${process.env.REACT_APP_SERVER}`);
       const userName = user.userName
       socket.on('connect', () => {
         socket.emit('newUser', { userName, socketID: socket.id });
